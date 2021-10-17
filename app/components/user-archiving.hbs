@@ -1,0 +1,17 @@
+{{#if @user.archived}}
+  <div class="message is-warning" data-test-message="archived">
+    <div class="message-body p-1">
+      This user is archived
+    </div>
+  </div>
+{{/if}}
+
+<button
+  class="button is-primary"
+  type="button"
+  data-test-button="archive"
+  {{on "click" this.toggleArchived}}
+>
+  {{if @user.archived "Unarchive" "Archive"}}
+  user
+</button>

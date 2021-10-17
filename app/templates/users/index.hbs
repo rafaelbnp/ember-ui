@@ -1,12 +1,25 @@
-{{page-title 'User'}}
+{{page-title "User"}}
+
 <div class="container">
+  <div class="has-text-right">
+    <button
+      class="button is-info is-small mt-5"
+      type="button"
+      data-test-button="toggleShowArchivedUsers"
+      {{on "click" this.toggleShowArchivedUsers}}
+    >
+      {{if this.showArchivedUsers "Hide" "Show"}}
+      archived users
+    </button>
+  </div>
+
   <div class="columns is-centered">
 
-    {{#each @model as |user|}}
+    {{#each this.users as |user|}}
       <div class="column">
 
         <LinkTo @route="users.user" @model={{user}}>
-          <div class="user-select is-220px">
+          <div class="user-select is-220px" data-test-user-card>
             <img
               class="is-pulled-left"
               src={{user.image}}
@@ -14,6 +27,12 @@
               alt="profile-image"
             />
             <p>{{user.name}}</p>
+
+            {{#if user.archived}}
+              <span class="tag is-warning" data-test-tag="archived">
+                Archived
+              </span>
+            {{/if}}
           </div>
         </LinkTo>
 
