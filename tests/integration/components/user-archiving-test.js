@@ -1,26 +1,42 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | user-archiving', function(hooks) {
+module('Integration | Component | user-archiving', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test('it renders unarchived user', async function (assert) {
+    this.set('user', { archived: false });
+    await render(hbs`<UserArchiving @user={{this.user}} />`);
 
-    await render(hbs`<UserArchiving />`);
+    assert.dom('[data-testid="archive-button"]').hasText('Archive user');
+    assert.dom('[data-testid="archived-message"').doesNotExist();
+  });
 
-    assert.equal(this.element.textContent.trim(), '');
+  test('it renders archived user', async function (assert) {
+    this.set('user', { archived: true });
+    await render(hbs`<UserArchiving @user={{this.user}} />`);
 
-    // Template block usage:
-    await render(hbs`
-      <UserArchiving>
-        template block text
-      </UserArchiving>
-    `);
+    assert.dom('[data-testid="archive-button"]').hasText('Unarchive user');
+    assert.dom('[data-testid="archived-message"').exists();
+  });
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+  test('it can toggle a user', async function (assert) {
+    assert.expect(2);
+
+    this.set('user', {
+      archived: false,
+      toggleArchived() {
+        assert.ok(true, 'toggleArchived is called');
+      },
+      save() {
+        assert.ok(true, 'user is saved');
+      },
+    });
+
+    await render(hbs`<UserArchiving @user={{this.user}} />`);
+
+    await click('[data-testid="archive-button"]');
   });
 });
