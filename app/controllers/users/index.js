@@ -16,7 +16,6 @@ export default class UsersIndexController extends Controller {
   }
 
   @action toggleShowArchivedUsers() {
-    console.log('vish');
     this.showArchivedUsers = !this.showArchivedUsers;
   }
 }
