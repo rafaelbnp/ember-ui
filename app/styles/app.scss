@@ -46,14 +46,19 @@ input::placeholder {
 .user-select {
   background: var(--div-bg);
   height: 60px;
-}
 
-.user-select p {
-  color: var(--font-color1);
-  padding-top: 8px;
-  margin-left: 70px;
-}
-.user-select:hover > p {
-  color: var(--font-color2);
-  text-decoration: underline;
+  p {
+    color: var(--font-color1);
+    padding-top: 8px;
+    margin-left: 70px;
+  }
+
+  .tag {
+    margin-left: 10px;
+  }
+
+  &:hover > p {
+    color: var(--font-color2);
+    text-decoration: underline;
+  }
 }

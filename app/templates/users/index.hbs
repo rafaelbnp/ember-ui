@@ -1,8 +1,18 @@
 {{page-title "User"}}
+
 <div class="container">
+  <button
+    class="button is-info mt-5"
+    type="button"
+    {{on "click" this.toggleShowArchivedUsers}}
+  >
+    {{if this.showArchivedUsers "Hide" "Show"}}
+    archived users
+  </button>
+
   <div class="columns is-centered">
 
-    {{#each @model as |user|}}
+    {{#each this.users as |user|}}
       <div class="column">
 
         <LinkTo @route="users.user" @model={{user}}>
@@ -14,6 +24,10 @@
               alt="profile-image"
             />
             <p>{{user.name}}</p>
+
+            {{#if user.archived}}
+              <span class="tag is-warning">Archived</span>
+            {{/if}}
           </div>
         </LinkTo>
 

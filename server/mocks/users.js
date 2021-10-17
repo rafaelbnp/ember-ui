@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (app) {
-  const express   = require('express');
+  const express = require('express');
   let usersRouter = express.Router();
 
   /*
@@ -18,7 +18,7 @@ module.exports = function (app) {
     GET "localhost:4200/api/users/1"
   */
   usersRouter.get('/:id', function (request, res) {
-    const user = usersJson.data.find((user)=> {
+    const user = usersJson.data.find((user) => {
       return user.id === request.params.id;
     });
 
@@ -33,51 +33,55 @@ module.exports = function (app) {
     res.send(usersJson);
   });
 
-  app.use('/api/users', require('body-parser').json({ type: 'application/*+json' }), usersRouter);
+  app.use(
+    '/api/users',
+    require('body-parser').json({ type: 'application/*+json' }),
+    usersRouter
+  );
 };
 
 // USER MOCK DATA
 const usersJson = {
-  "data": [
-  {
-    "id": "1",
-    "type": "user",
-    "attributes": {
-      "name": "Albert Einstein",
-      "image": "/images/Einstein.jpg",
-      "value": "false",
-      "archived": "false"
-    }
-  },
-  {
-    "id": "2",
-    "type": "user",
-    "attributes": {
-      "name": "Walt Disney",
-      "image": "/images/Walt.jpg",
-      "value": "false",
-      "archived": "false"
-    }
-  },
-  {
-    "id": "3",
-    "type": "user",
-    "attributes": {
-      "name": "Bruce Lee",
-      "image": "/images/Bruce.jpg",
-      "value": "false",
-      "archived": "false"
-    }
-  },
-  {
-    "id": "4",
-    "type": "user",
-    "attributes": {
-      "name": "Neil Armstrong",
-      "image": "/images/Neil.jpg",
-      "value": "false",
-      "archived": "false"
-    }
-  }
-  ]
+  data: [
+    {
+      id: '1',
+      type: 'user',
+      attributes: {
+        name: 'Albert Einstein',
+        image: '/images/Einstein.jpg',
+        value: 'false',
+        archived: 'false',
+      },
+    },
+    {
+      id: '2',
+      type: 'user',
+      attributes: {
+        name: 'Walt Disney',
+        image: '/images/Walt.jpg',
+        value: 'false',
+        archived: 'false',
+      },
+    },
+    {
+      id: '3',
+      type: 'user',
+      attributes: {
+        name: 'Bruce Lee',
+        image: '/images/Bruce.jpg',
+        value: 'false',
+        archived: 'false',
+      },
+    },
+    {
+      id: '4',
+      type: 'user',
+      attributes: {
+        name: 'Neil Armstrong',
+        image: '/images/Neil.jpg',
+        value: 'false',
+        archived: 'false',
+      },
+    },
+  ],
 };
