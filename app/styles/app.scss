@@ -1,7 +1,7 @@
 @import 'bulma';
 
 :root {
-  --bg: #06315F;
+  --bg: #06315f;
   --nav-bg: #041221;
   --div-bg: #0b59ad;
   --font-color1: #fafaff;
@@ -32,14 +32,14 @@ input::placeholder {
 
 .fa {
   color: var(--font-color1);
-  margin: 10px
+  margin: 10px;
 }
 
 .user-profile {
   background-color: var(--div-bg);
-  height: 440px;
+  min-height: 440px;
   min-width: 350px;
-  margin: auto 0; 
+  margin: auto 0;
   padding: 15px 15px;
 }
 
@@ -48,12 +48,12 @@ input::placeholder {
   height: 60px;
 }
 
-.user-select p{
+.user-select p {
   color: var(--font-color1);
   padding-top: 8px;
   margin-left: 70px;
 }
-.user-select:hover > p{
+.user-select:hover > p {
   color: var(--font-color2);
   text-decoration: underline;
 }
